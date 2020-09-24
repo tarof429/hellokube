@@ -1,1 +1,1 @@
-docker build -t hellokube:v1.0 .
+docker build -t hellokube:v1.1 .

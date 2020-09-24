@@ -2,21 +2,21 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
-	"os"
+
+	"k8s.io/klog/v2"
 )
 
 func myhandler(w http.ResponseWriter, r *http.Request) {
+
 	fmt.Fprintf(w, "Hello from Go!\n")
 }
 
 func main() {
+	klog.InfoS("Starting pod...")
+
 	http.HandleFunc("/", myhandler)
 
-	err := http.ListenAndServe(":8090", nil)
-
-	if err != nil {
-		fmt.Printf("Unable to start serevr")
-		os.Exit(1)
-	}
+	log.Fatal(http.ListenAndServe(":8090", nil))
 }
